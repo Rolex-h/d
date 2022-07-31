@@ -1,55 +1,77 @@
-/*
-	 CSS-Tricks Example
-	 by Chris Coyier
-	 http://css-tricks.com
-*/
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400');
 
-* { 
-    margin: 0; 
-    padding: 0; 
+body{ 
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background: #131313;
+  color: #fff;
+  font-size: 96px;
+  font-family: 'Fira Mono', monospace;
+  letter-spacing: -7px;
 }
 
-html, body, #bg, #bg table, #bg td, #cont {
-    height:100%;
-    width:100%;
-    overflow:hidden;
+div{
+  animation: glitch 1s linear infinite;
 }
 
-#bg { 
-    position: fixed; 
+@keyframes glitch{
+  2%,64%{
+    transform: translate(2px,0) skew(0deg);
+  }
+  4%,60%{
+    transform: translate(-2px,0) skew(0deg);
+  }
+  62%{
+    transform: translate(0,0) skew(5deg); 
+  }
 }
 
-#bg div {
-    height:200%;
-    left:-50%;
-    position:absolute;
-    top:-50%;
-    width:200%;
+div:before,
+div:after{
+  content: attr(title);
+  position: absolute;
+  left: 0;
 }
 
-#bg td {
-    text-align:center;
-    vertical-align:middle;
+div:before{
+  animation: glitchTop 1s linear infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
 }
 
-#bg img {
-    margin:0 auto;
-    min-height:50%;
-    min-width:50%;
+@keyframes glitchTop{
+  2%,64%{
+    transform: translate(2px,-2px);
+  }
+  4%,60%{
+    transform: translate(-2px,2px);
+  }
+  62%{
+    transform: translate(13px,-1px) skew(-13deg); 
+  }
 }
 
-#cont {
-    position:absolute;
-    top:0;left:0;
-    z-index:70;
-    overflow:auto;
+div:after{
+  animation: glitchBotom 1.5s linear infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 }
 
-.box { 
-    margin: 0 auto; 
-    width: 400px;
-    padding: 50px;
-    background: white; 
-    padding-bottom:100px;
-    font: 14px/2.8 Georgia, Serif;
+@keyframes glitchBotom{
+  2%,64%{
+    transform: translate(-2px,0);
+  }
+  4%,60%{
+    transform: translate(-2px,0);
+  }
+  62%{
+    transform: translate(-22px,5px) skew(21deg); 
+  }
+
+
 }
+    
